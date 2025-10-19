@@ -1,43 +1,84 @@
-# ZakariaGreeter
+# 🧩 ZakariaGreeter
 
-TODO: Delete this and the text below, and describe your gem
+A simple Ruby gem that says hello 👋  
+Published on **GitHub Packages** by [@ZakariaAitAli](https://github.com/ZakariaAitAli).
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/zakaria_greeter`. To experiment with that code, run `bin/console` for an interactive prompt.
+---
 
-## Installation
+## 📦 Installation (via GitHub Packages)
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add this to your `Gemfile`:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+source "https://rubygems.pkg.github.com/ZakariaAitAli" do
+  gem "zakaria_greeter", "0.1.0"
+end
+````
+
+Then authenticate Bundler with your GitHub Personal Access Token (PAT):
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle config https://rubygems.pkg.github.com/ZakariaAitAli YOUR_GITHUB_TOKEN
+bundle install
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+> 💡 **Tip:** You can create a token with the `read:packages` scope from
+> [https://github.com/settings/tokens](https://github.com/settings/tokens)
+
+---
+
+## 🧪 Usage
+
+Once installed, you can require and use it directly:
+
+```ruby
+require "zakaria_greeter"
+
+puts ZakariaGreeter.hello("Zakaria")
+# => Hello, Zakaria! 👋
+```
+
+---
+
+## 🛠 Development
+
+After checking out the repo:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bin/setup      # Install dependencies
+bin/console    # Open interactive console
 ```
 
-## Usage
+To release a new version:
 
-TODO: Write usage instructions here
+```bash
+bundle exec rake release
+```
 
-## Development
+This will:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+* Update the version in `lib/zakaria_greeter/version.rb`
+* Create a git tag
+* Push commits, tag, and the gem to GitHub Packages
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+---
 
-## Contributing
+## 🤝 Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/zakaria_greeter. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/zakaria_greeter/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at
+👉 [https://github.com/ZakariaAitAli/zakaria_greeter](https://github.com/ZakariaAitAli/zakaria_greeter)
 
-## License
+This project is intended to be a safe, welcoming space for collaboration.
+Please adhere to the [Code of Conduct](https://github.com/ZakariaAitAli/zakaria_greeter/blob/main/CODE_OF_CONDUCT.md).
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+---
 
-## Code of Conduct
+## 📜 License
 
-Everyone interacting in the ZakariaGreeter project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/zakaria_greeter/blob/main/CODE_OF_CONDUCT.md).
+This gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+---
+
+**Author:** Zakaria Ait Ali
+**Ruby Version:** ≥ 3.2.0
+**Registry:** [GitHub Packages – zakaria_greeter](https://github.com/ZakariaAitAli/zakaria_greeter/packages)

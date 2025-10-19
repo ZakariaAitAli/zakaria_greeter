@@ -31,8 +31,10 @@ jobs:
           OWNER: ${{ github.repository_owner }}
         run: |
           mkdir -p ~/.gem
-          printf -- "---\n:https://rubygems.pkg.github.com/${OWNER}: ${GEM_HOST_API_KEY}\n" > ~/.gem/credentials
+          echo "---" > ~/.gem/credentials
+          echo ":https://rubygems.pkg.github.com/${OWNER}: ${GEM_HOST_API_KEY}" >> ~/.gem/credentials
           chmod 0600 ~/.gem/credentials
+          gem build *.gemspec
           gem push --host https://rubygems.pkg.github.com/${OWNER} *.gem
 
       # optional: publish to RubyGems.org if the token exists

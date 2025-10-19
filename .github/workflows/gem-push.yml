@@ -41,18 +41,3 @@ jobs:
           chmod 0600 ~/.gem/credentials
           gem build *.gemspec
           gem push --host https://rubygems.pkg.github.com/${OWNER} *.gem
-
-      # optional: publish to RubyGems.org if the token exists
-      - name: Publish to RubyGems.org
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
-        run: |
-          if [ -n "$RUBYGEMS_API_KEY" ]; then
-            echo "Publishing to RubyGems.org..."
-            mkdir -p ~/.gem
-            printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > ~/.gem/credentials
-            chmod 0600 ~/.gem/credentials
-            gem push *.gem
-          else
-            echo "⏭️ RUBYGEMS_AUTH_TOKEN not set — skipping RubyGems.org publish."
-          fi

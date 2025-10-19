@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    name: Build & Publish RubyGem
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -36,12 +35,17 @@ jobs:
           chmod 0600 ~/.gem/credentials
           gem push --host https://rubygems.pkg.github.com/${OWNER} *.gem
 
+      # optional: publish to RubyGems.org if the token exists
       - name: Publish to RubyGems.org
-        if: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
         run: |
-          mkdir -p ~/.gem
-          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > ~/.gem/credentials
-          chmod 0600 ~/.gem/credentials
-          gem push *.gem
+          if [ -n "$RUBYGEMS_API_KEY" ]; then
+            echo "Publishing to RubyGems.org..."
+            mkdir -p ~/.gem
+            printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > ~/.gem/credentials
+            chmod 0600 ~/.gem/credentials
+            gem push *.gem
+          else
+            echo "⏭️ RUBYGEMS_AUTH_TOKEN not set — skipping RubyGems.org publish."
+          fi

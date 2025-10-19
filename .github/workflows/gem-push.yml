@@ -20,18 +20,12 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2 # match your gemspec
+          ruby-version: 3.2
           bundler-cache: true
 
-      # ----------------------------
-      # 🧱 Build gem
-      # ----------------------------
       - name: Build Gem
         run: gem build *.gemspec
 
-      # ----------------------------
-      # 🚀 Publish to GitHub Packages
-      # ----------------------------
       - name: Publish to GitHub Packages
         env:
           GEM_HOST_API_KEY: "Bearer ${{ secrets.GITHUB_TOKEN }}"
@@ -42,12 +36,8 @@ jobs:
           chmod 0600 ~/.gem/credentials
           gem push --host https://rubygems.pkg.github.com/${OWNER} *.gem
 
-      # ----------------------------
-      # 🌍 Publish to RubyGems.org
-      # (optional – only if RUBYGEMS_AUTH_TOKEN is set)
-      # ----------------------------
       - name: Publish to RubyGems.org
-        if: secrets.RUBYGEMS_AUTH_TOKEN != ''
+        if: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}
         run: |
